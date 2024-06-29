@@ -1,118 +1,64 @@
-# the rock paper scissors game
+# rock paper scissors game
 """
-Rock beats scissors
-Scissors beats paper
-paper beats rock
+Rock beats scissors.
+Scissors beat paper.
+Paper beats rock.
 """
 import random
 
-def mode():
-    print("Welcome to the Rock Paper Scissors Game")
-    print("Choose your mode")
-    print("1. Player vs Computer")
-    print("2. Computer vs Computer")
-    print("3. player vs player")
-    print("4. Exit")
-    mode = input("Enter your choice: ")
-    return mode
+"""
+Let's add some more excitement to this challenge and make the game multiplayer, where the computer will be your opponent and can randomly choose one of the elements (rock, paper, or scissors) for each move, just like you. Your interaction in the game will be through the console (Terminal).
 
-def player_vs_computer():
-    print("Player vs Computer")
-    player = input("Enter your choice: ")
-    computer = random.choice(["rock", "paper", "scissors"])
-    print(f"Computer choice: {computer}")
-    if player == computer:
-        print("It's a tie")
-    elif player == "rock":
-        if computer == "scissors":
-            print("Player wins")
-        else:
-            print("Computer wins")
-    elif player == "scissors":
-        if computer == "paper":
-            print("Player wins")
-        else:
-            print("Computer wins")
-    elif player == "paper":
-        if computer == "rock":
-            print("Player wins")
-        else:
-            print("Computer wins")
-    else:
-        print("Invalid choice")
+The player can choose one of the three options rock, paper, or scissors and should be warned if they enter an invalid option.
+At each round, the player must enter one of the options in the list and be informed if they won, lost, or tied with the opponent.
+By the end of each round, the player can choose whether to play again.
+Display the player's score at the end of the game.
+The mini game must handle user inputs, putting them in lowercase and informing the user if the option is invalid.
+"""
 
-def computer_vs_computer():
-    print("Computer vs Computer")
-    computer1 = random.choice(["rock", "paper", "scissors"])
-    computer2 = random.choice(["rock", "paper", "scissors"])
-    print(f"Computer1 choice: {computer1}")
-    print(f"Computer2 choice: {computer2}")
-    if computer1 == computer2:
-        print("It's a tie")
-    elif computer1 == "rock":
-        if computer2 == "scissors":
-            print("Computer1 wins")
-        else:
-            print("Computer2 wins")
-    elif computer1 == "scissors":
-        if computer2 == "paper":
-            print("Computer1 wins")
-        else:
-            print("Computer2 wins")
-    elif computer1 == "paper":
-        if computer2 == "rock":
-            print("Computer1 wins")
-        else:
-            print("Computer2 wins")
-    else:
-        print("Invalid choice")
+def rock_paper_scissors():
+    print("Welcome to Rock, Paper, Scissors!")
+    print("You will be playing against the computer.")
+    print("Rock beats scissors.")
+    print("Scissors beat paper.")
+    print("Paper beats rock.")
+    print("Good luck!")
+    print("")
 
-def player_vs_player():
-    print("Player vs Player")
-    player1 = input("Enter your choice: ")
-    player2 = input("Enter your choice: ")
-    print(f"Player1 choice: {player1}")
-    print(f"Player2 choice: {player2}")
-    if player1 == player2:
-        print("It's a tie")
-    elif player1 == "rock":
-        if player2 == "scissors":
-            print("Player1 wins")
-        else:
-            print("Player2 wins")
-    elif player1 == "scissors":
-        if player2 == "paper":
-            print("Player1 wins")
-        else:
-            print("Player2 wins")
-    elif player1 == "paper":
-        if player2 == "rock":
-            print("Player1 wins")
-        else:
-            print("Player2 wins")
-    else:
-        print("Invalid choice")
-
-def main():
-    
     player_score = 0
     computer_score = 0
-    play_again = True
-
-    
 
     while True:
-        choice = mode()
-        if choice == "1":
-            player_vs_computer()
-        elif choice == "2":
-            computer_vs_computer()
-        elif choice == "3":
-            player_vs_player()
-        elif choice == "4":
-            break
+        player_choice = input("Enter rock, paper, or scissors: ").lower()
+        computer_choice = random.choice(["rock", "paper", "scissors"])
+
+        if player_choice not in ["rock", "paper", "scissors"]:
+            print("Invalid option. Please try again.")
+            continue
+
+        print(f"Player: {player_choice}")
+        print(f"Computer: {computer_choice}")
+
+        if player_choice == computer_choice:
+            print("It's a tie!")
+        elif (player_choice == "rock" and computer_choice == "scissors") or (player_choice == "scissors" and computer_choice == "paper") or (player_choice == "paper" and computer_choice == "rock"):
+            print("You win!")
+            player_score += 1
         else:
-            print("Invalid choice")
+            print("You lose!")
+            computer_score += 1
+
+        print(f"Player score: {player_score}")
+        print(f"Computer score: {computer_score}")
+
+        play_again = input("Do you want to play again? (yes/no): ").lower()
+        if play_again != "yes":
+            break
+
+    print("Thanks for playing!")
+
+def main():
+    rock_paper_scissors()
 
 if __name__ == "__main__":
     main()
